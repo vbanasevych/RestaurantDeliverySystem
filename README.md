@@ -37,6 +37,7 @@
     - `customer`
     - `dish`
     - `purchaseDate`
+    - `totalPrice`
 
 ## 🔗 Зв’язки між сутностями
 
