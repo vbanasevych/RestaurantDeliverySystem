@@ -1,69 +1,40 @@
 package com.restaurantdelivery.restaurantdeliverysystem.h2;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import lombok.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
+
+@Entity
+@Table(name = "restaurant")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Restaurant {
 
-    private final long id;
-    private final String name;
-    private final String location;
-    private List<Purchase> purchases = new ArrayList<>();
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    public Restaurant() {
-        this.id = 0L;
-        this.name = "";
-        this.location = "";
-        this.purchases = new ArrayList<>();
-    }
+    @Column(nullable = false, unique = true)
+    @NotBlank(message = "Store name cannot be blank")
+    private String name;
 
-    public Restaurant(long id, String name, String location, List<Purchase> purchases) {
-        if (name == null || location == null) {
-            throw new IllegalArgumentException("Name and location cannot be null");
-        }
-        this.id = id;
-        this.name = name;
-        this.location = location;
-        this.purchases = purchases;
-    }
+    @Column(nullable = false)
+    @NotBlank(message = "Location cannot be blank")
+    private String location;
 
-    public long getId() {
-        return id;
-    }
+    @Pattern(regexp = "\\+?[0-9\\-\\s]{7,20}", message = "Invalid contact number format")
+    private String contactNumber;
 
-    public String getName() {
-        return name;
-    }
+    @Builder.Default
+    @ManyToMany(mappedBy = "stores", fetch = FetchType.LAZY)
+    private Set<Dish> products = new HashSet<>();
 
-    public String getLocation() {
-        return location;
-    }
-
-    public List<Purchase> getPurchases() {
-        return purchases;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Restaurant restaurant = (Restaurant) o;
-        return id == restaurant.id && Objects.equals(name, restaurant.name) && Objects.equals(location, restaurant.location);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, location, purchases);
-    }
-
-    @Override
-    public String toString() {
-        return "Student{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", location='" + location + '\'' +
-                ", purchases=" + purchases + '\'' +
-                '}';
-    }
 }
