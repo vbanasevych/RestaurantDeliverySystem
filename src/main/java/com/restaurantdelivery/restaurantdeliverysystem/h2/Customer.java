@@ -37,4 +37,10 @@ public class Customer {
     @ManyToMany(mappedBy = "purchases", fetch = FetchType.LAZY)
     private List<Purchase> purchases = new ArrayList<>();
 
+    public Customer(long id, String firstName, String lastName, String email) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
 }

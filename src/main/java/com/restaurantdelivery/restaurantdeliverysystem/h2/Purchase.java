@@ -51,4 +51,9 @@ public class Purchase {
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime purchaseDate;
 
+    public Purchase(long id, int quantity, BigDecimal totalPrice) {
+        this.id = id;
+        this.quantity = quantity;
+        this.totalPrice = totalPrice;
+    }
 }

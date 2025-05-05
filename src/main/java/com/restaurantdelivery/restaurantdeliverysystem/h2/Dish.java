@@ -39,5 +39,9 @@ public class Dish {
             inverseJoinColumns = @JoinColumn(name = "store_id")
     )
     private Set<Restaurant> restaurants = new HashSet<>();
-
+    public Dish(Long id, String name, BigDecimal price){
+        this.id = id;
+        this.name = name;
+        this.price = price;
+    }
 }
