@@ -1,4 +1,5 @@
 package com.restaurantdelivery.restaurantdeliverysystem.DAO;
+
 import com.restaurantdelivery.restaurantdeliverysystem.h2.Purchase;
 import com.restaurantdelivery.restaurantdeliverysystem.h2.Restaurant;
 
@@ -82,4 +83,3 @@ public class PurchaseDAO {
         return purchases;
     }
 }
-
