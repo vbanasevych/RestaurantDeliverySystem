@@ -22,7 +22,7 @@ public class Restaurant {
     private Long id;
 
     @Column(nullable = false, unique = true)
-    @NotBlank(message = "Store name cannot be blank")
+    @NotBlank(message = "Restaurant name cannot be blank")
     private String name;
 
     @Column(nullable = false)
@@ -33,7 +33,7 @@ public class Restaurant {
     private String contactNumber;
 
     @Builder.Default
-    @ManyToMany(mappedBy = "stores", fetch = FetchType.LAZY)
-    private Set<Dish> products = new HashSet<>();
+    @ManyToMany(mappedBy = "restaurants", fetch = FetchType.LAZY)
+    private Set<Dish> dishes = new HashSet<>();
 
 }

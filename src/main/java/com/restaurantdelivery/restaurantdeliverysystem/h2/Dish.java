@@ -22,7 +22,7 @@ public class Dish {
     private Long id;
 
     @Column(nullable = false, unique = true)
-    @NotBlank(message = "Store name cannot be blank")
+    @NotBlank(message = "Dish name cannot be blank")
     private String name;
 
     @DecimalMin(value = "0.0", inclusive = false, message = "Price must be greater than 0")
