@@ -16,6 +16,9 @@ public class CustomerDTO {
     @Email(message = "Email should be valid")
     private String email;
 
+    public CustomerDTO(Long id, @NotBlank(message = "First name cannot be blank") String firstName, @NotBlank(message = "Last name cannot be blank") String lastName, @Email(message = "Invalid email format") @NotBlank(message = "Email must not be empty") String email) {
+    }
+
     public Long getId() {
         return id;
     }

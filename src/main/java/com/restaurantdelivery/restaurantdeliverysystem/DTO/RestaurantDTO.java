@@ -1,6 +1,7 @@
 package com.restaurantdelivery.restaurantdeliverysystem.DTO;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 
 public class RestaurantDTO {
     private Long id;
@@ -13,6 +14,9 @@ public class RestaurantDTO {
 
     @NotBlank(message = "Contsat number is required")
     private String contactNumber;
+
+    public RestaurantDTO(Long id, @NotBlank(message = "Restaurant name cannot be blank") String name, @NotBlank(message = "Location cannot be blank") String location, @Pattern(regexp = "\\+?[0-9\\-\\s]{7,20}", message = "Invalid contact number format") String contactNumber) {
+    }
 
     public Long getId() {
         return id;

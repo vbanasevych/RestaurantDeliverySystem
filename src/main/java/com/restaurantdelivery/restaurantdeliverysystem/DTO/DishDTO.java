@@ -1,5 +1,6 @@
 package com.restaurantdelivery.restaurantdeliverysystem.DTO;
 
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import com.restaurantdelivery.restaurantdeliverysystem.h2.Category;
@@ -16,6 +17,9 @@ public class DishDTO {
 
     @NotNull(message = "Category price is required")
     private Category category;
+
+    public DishDTO(Long id, @NotBlank(message = "Dish name cannot be blank") String name, @DecimalMin(value = "0.0", inclusive = false, message = "Price must be greater than 0") BigDecimal price, Category category) {
+    }
 
     public Long getId() {
         return id;

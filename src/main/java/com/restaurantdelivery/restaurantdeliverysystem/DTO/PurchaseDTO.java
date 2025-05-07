@@ -1,9 +1,11 @@
 package com.restaurantdelivery.restaurantdeliverysystem.DTO;
 
+import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import com.restaurantdelivery.restaurantdeliverysystem.h2.Customer;
 import com.restaurantdelivery.restaurantdeliverysystem.h2.Dish;
+import jakarta.validation.constraints.PositiveOrZero;
 
 import java.math.BigDecimal;
 
@@ -24,6 +26,10 @@ public class PurchaseDTO {
 
     @NotNull(message = "Total price is required")
     private BigDecimal totalPrice;
+
+    public PurchaseDTO(Long id, @PositiveOrZero(message = "Quantity must be zero or positive") int quantity, Dish dish, @PositiveOrZero(message = "Total price must be zero or positive") @Digits(integer = 19, fraction = 2) @NotNull(message = "Total price cannot be null") BigDecimal totalPrice, Object o) {
+    }
+
 
     public Long getId() {
         return id;

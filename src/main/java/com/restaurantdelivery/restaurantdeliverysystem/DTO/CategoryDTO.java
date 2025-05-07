@@ -8,6 +8,9 @@ public class CategoryDTO {
     @NotBlank(message = "Name is required")
     private String name;
 
+    public CategoryDTO(Long id, @NotBlank(message = "Category name cannot be blank") String name) {
+    }
+
     public Long getId() {
         return id;
     }
