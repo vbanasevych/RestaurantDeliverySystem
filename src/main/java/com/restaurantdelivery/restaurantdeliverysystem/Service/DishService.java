@@ -1,11 +1,11 @@
 package com.restaurantdelivery.restaurantdeliverysystem.Service;
 
+import com.restaurantdelivery.restaurantdeliverysystem.h2.Dish;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.restaurantdelivery.restaurantdeliverysystem.h2.Dish;
 public class DishService {
     private final Connection conn;
 
@@ -17,8 +17,8 @@ public class DishService {
     }
 
     public long addDish(Dish dish) throws SQLException {
-        if (dish == null || dish.getName() == null) {
-            throw new IllegalArgumentException("Dish and its fields cannot be null");
+        if (dish == null || dish.getName() == null || dish.getPrice() == null) {
+            throw new IllegalArgumentException("Dish and its fields (name, price) cannot be null");
         }
         String sql = "INSERT INTO dish (name, price) VALUES (?, ?)";
         try (PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -26,7 +26,6 @@ public class DishService {
             pstmt.setBigDecimal(2, dish.getPrice());
             pstmt.executeUpdate();
 
-            // Отримання згенерованого ID
             try (ResultSet rs = pstmt.getGeneratedKeys()) {
                 if (rs.next()) {
                     return rs.getLong(1);
@@ -35,9 +34,10 @@ public class DishService {
             throw new SQLException("Failed to retrieve generated ID for the new dish");
         }
     }
+
     public boolean updateDish(Dish dish) throws SQLException {
-        if (dish == null || dish.getName() == null) {
-            throw new IllegalArgumentException("Dish and its fields cannot be null");
+        if (dish == null || dish.getName() == null || dish.getPrice() == null) {
+            throw new IllegalArgumentException("Dish and its fields (name, price) cannot be null");
         }
         String sql = "UPDATE dish SET name = ?, price = ? WHERE id = ?";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -48,6 +48,7 @@ public class DishService {
             return rowsAffected > 0;
         }
     }
+
     public boolean deleteDish(long id) throws SQLException {
         String sql = "DELETE FROM dish WHERE id = ?";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -56,27 +57,37 @@ public class DishService {
             return rowsAffected > 0;
         }
     }
+
     public Dish getDishById(long id) throws SQLException {
         String sql = "SELECT * FROM dish WHERE id = ?";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setLong(1, id);
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
-                    return new Dish(rs.getLong("id"), rs.getString("name"), rs.getBigDecimal("price"));
+                    return new Dish(
+                            rs.getLong("id"),
+                            rs.getString("name"),
+                            rs.getBigDecimal("price")
+                    );
                 }
             }
         }
         return null;
     }
-    public List<Dish> getAllDish() throws SQLException {
-        List<Dish> dish = new ArrayList<>();
+
+    public List<Dish> getAllDishes() throws SQLException {
+        List<Dish> dishes = new ArrayList<>();
         String sql = "SELECT * FROM dish";
         try (PreparedStatement pstmt = conn.prepareStatement(sql);
              ResultSet rs = pstmt.executeQuery()) {
             while (rs.next()) {
-                dish.add(new Dish(rs.getLong("id"), rs.getString("name"), rs.getBigDecimal("price")));
+                dishes.add(new Dish(
+                        rs.getLong("id"),
+                        rs.getString("name"),
+                        rs.getBigDecimal("price")
+                ));
             }
         }
-        return dish;
+        return dishes;
     }
 }
