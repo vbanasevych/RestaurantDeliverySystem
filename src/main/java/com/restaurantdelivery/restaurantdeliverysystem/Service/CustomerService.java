@@ -1,14 +1,14 @@
-package DAO;
+package com.restaurantdelivery.restaurantdeliverysystem.Service;
 import com.restaurantdelivery.restaurantdeliverysystem.h2.Customer;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomerDAO {
+public class CustomerService {
     private final Connection conn;
 
-    public CustomerDAO(Connection conn) {
+    public CustomerService(Connection conn) {
         if (conn == null) {
             throw new IllegalArgumentException("Connection cannot be null");
         }

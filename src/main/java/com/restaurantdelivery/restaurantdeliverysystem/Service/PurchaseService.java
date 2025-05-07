@@ -1,15 +1,14 @@
-package DAO;
+package com.restaurantdelivery.restaurantdeliverysystem.Service;
 import com.restaurantdelivery.restaurantdeliverysystem.h2.Purchase;
-import com.restaurantdelivery.restaurantdeliverysystem.h2.Restaurant;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PurchaseDAO {
+public class PurchaseService {
     private final Connection conn;
 
-    public PurchaseDAO(Connection conn) {
+    public PurchaseService(Connection conn) {
         if (conn == null) {
             throw new IllegalArgumentException("Connection cannot be null");
         }
