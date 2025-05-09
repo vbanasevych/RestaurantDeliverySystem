@@ -13,7 +13,6 @@ public class RestaurantDeliverySystemApplication implements CommandLineRunner {
         Dish dish = new Dish();
 
     }
-
     public static void main(String[] args) {
         SpringApplication.run(RestaurantDeliverySystemApplication.class, args);
     }
