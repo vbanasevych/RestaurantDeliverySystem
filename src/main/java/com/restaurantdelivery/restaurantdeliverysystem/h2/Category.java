@@ -25,9 +25,8 @@ public class Category {
     private String name;
 
     @Builder.Default
-    @ManyToMany(mappedBy = "dishes", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
     private List<Dish> dishes = new ArrayList<>();
-
     public Category(long id, String name) {
         this.id = id;
         this.name = name;

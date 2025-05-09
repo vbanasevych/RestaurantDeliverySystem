@@ -33,8 +33,8 @@ public class Restaurant {
     private String contactNumber;
 
     @Builder.Default
-    @ManyToMany(mappedBy = "restaurant", fetch = FetchType.LAZY)
-    private Set<Dish> products = new HashSet<>();
+    @ManyToMany(mappedBy = "restaurants", fetch = FetchType.LAZY)
+    private Set<Dish> dishes = new HashSet<>();
 
     public Restaurant(long id, String name, String location) {
         this.id = id;
