@@ -19,7 +19,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-@ToString(exclude = {"customer", "product"})
+@ToString(exclude = {"customer", "dish"})
 @Builder
 public class Purchase {
     @Id
@@ -32,7 +32,7 @@ public class Purchase {
     private Customer customer;
 
     @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false)
+    @JoinColumn(name = "dish_id", nullable = false)
     private Dish dish;
 
     @Column(nullable = false)

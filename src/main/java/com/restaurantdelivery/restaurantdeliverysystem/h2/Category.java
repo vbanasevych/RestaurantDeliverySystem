@@ -27,7 +27,6 @@ public class Category {
     @Builder.Default
     @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
     private List<Dish> dishes = new ArrayList<>();
-
     public Category(long id, String name) {
         this.id = id;
         this.name = name;

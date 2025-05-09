@@ -34,11 +34,12 @@ public class Dish {
 
     @ManyToMany
     @JoinTable(
-            name = "product_store",
-            joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "store_id")
+            name = "dish_restaurant",
+            joinColumns = @JoinColumn(name = "dish_id"),
+            inverseJoinColumns = @JoinColumn(name = "restaurant_id")
     )
     private Set<Restaurant> restaurants = new HashSet<>();
+
     public Dish(Long id, String name, BigDecimal price){
         this.id = id;
         this.name = name;
