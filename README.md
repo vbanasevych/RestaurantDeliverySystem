@@ -1,9 +1,9 @@
-# Restaurant-Order Management System
 
 ## 📚 Overview
 The Restaurant-Order Management System is a comprehensive web application built with Spring Boot that facilitates ordering food from restaurants. The system provides a user-friendly interface for managing customers, food, categories, and their relationships.
 
 ## ✨ Features
+
 
 ### 🔐 Authentication
 - Simple login and registration system
@@ -31,7 +31,6 @@ The Restaurant-Order Management System is a comprehensive web application built 
 ### 🛒 Purchase Management
 - Create and manage orders
 - Link dishes to each purchase
-
 
 ## 🛠️ Technology Stack
 
