@@ -2,6 +2,6 @@ package com.restaurantdelivery.restaurantdeliverysystem.h2;
 
 public enum Role {
         ADMIN,
-        USER
+        CUSTOMER
     }
 
