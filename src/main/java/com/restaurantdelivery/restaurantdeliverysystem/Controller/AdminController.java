@@ -1,11 +1,16 @@
 package com.restaurantdelivery.restaurantdeliverysystem.Controller;
 
+import com.restaurantdelivery.restaurantdeliverysystem.Service.CategoryService;
+import com.restaurantdelivery.restaurantdeliverysystem.Service.DishService;
 import com.restaurantdelivery.restaurantdeliverysystem.Service.UserService;
+import com.restaurantdelivery.restaurantdeliverysystem.h2.Category;
+import com.restaurantdelivery.restaurantdeliverysystem.h2.Dish;
 import com.restaurantdelivery.restaurantdeliverysystem.h2.Role;
 import com.restaurantdelivery.restaurantdeliverysystem.h2.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @RestController
@@ -36,4 +41,5 @@ public class AdminController {
         userService.blockUser(id);
         return "The user is blocked";
     }
+
 }
